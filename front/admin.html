@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Panel de Administración</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Panel de Administración</h2>
+    <button id="logoutBtn" style="background:#dc3545; margin-bottom:1rem;">Cerrar sesión</button>
+
+    <h2>Crear Administrador</h2>
+    <form id="registerForm">
+      <input type="text" id="registerUser" placeholder="Usuario" required />
+      <input type="text" id="registerRol" placeholder="Rol" required />
+      <input type="password" id="registerPassword" placeholder="Contraseña" required />
+      <input type="password" id="registerPassword_repeat" placeholder="repetir_Contraseña" required />
+      <button type="submit">Registrarse</button>
+    </form>
+    
+    <section>
+      <h3>Usuarios registrados</h3>
+      <button id="loadUsersBtn">Cargar usuarios</button>
+      <ul id="usersList"></ul>
+    </section>
+
+    <section>
+      <h3>Productos</h3>
+      <button id="loadProductsBtn">Cargar productos</button>
+      <ul id="productsList"></ul>
+      <h4>Crear nuevo producto</h4>
+      <form id="createProductForm">
+        <input type="text" id="productName" placeholder="Nombre" required>
+        <input type="text" id="productDescription" placeholder="Descripción" required>
+        <input type="number" id="productPrice" placeholder="Precio" min="0" step="0.01" required>
+        <input type="number" id="productStock" placeholder="Stock" min="0" required>
+        <button type="submit">Crear producto</button>
+      </form>
+      <h4>Actualizar producto</h4>
+      <form id="updateProductForm">
+        <input type="text" id="updateProductId" placeholder="ID del producto" required>
+        <input type="text" id="updateProductName" placeholder="Nuevo nombre" required>
+        <input type="text" id="updateProductDescription" placeholder="Nueva descripción" required>
+        <input type="number" id="updateProductPrice" placeholder="Nuevo precio" min="0" step="0.01" required>
+        <input type="number" id="updateProductStock" placeholder="Nuevo stock" min="0" required>
+        <button type="submit">Actualizar producto</button>
+      </form>
+    </section>
+  </div>
+  <script src="admin.js"></script>
+</body>
+</html>

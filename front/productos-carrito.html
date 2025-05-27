@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Productos y Carrito</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h2>Productos</h2>
+    <form id="addToCartForm">
+      <input type="text" id="productInput" placeholder="Nombre del producto" required />
+      <input type="number" id="quantityInput" placeholder="Cantidad" min="1" value="1" required />
+      <button type="submit">Agregar al carrito</button>
+    </form>
+    <div id="productsList" class="products-list"></div>
+
+    <h3>🛒 Carrito</h3>
+    <ul id="cart" class="cart-list"></ul>
+    <div id="cartTotal" style="font-weight:bold; margin: 1rem 0;"></div>
+    <button id="checkoutBtn">Finalizar Compra</button>
+    <button id="logoutBtn" style="background:#dc3545; margin-top:1rem;">Cerrar sesión</button>
+  </div>
+
+  <script src="script.js"></script>
+  <script src="productos-carrito.js"></script>
+</body>
+</html>
