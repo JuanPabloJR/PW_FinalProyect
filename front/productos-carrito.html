@@ -8,6 +8,10 @@
 <body>
   <div class="container">
     <h2>Productos</h2>
+    <form id="searchProductForm" style="margin-bottom:1rem;">
+      <input type="text" id="searchProductInput" placeholder="Buscar producto por nombre o descripción" required />
+      <button type="submit">Buscar</button>
+    </form>
     <form id="addToCartForm">
       <input type="text" id="productInput" placeholder="Nombre del producto" required />
       <input type="number" id="quantityInput" placeholder="Cantidad" min="1" value="1" required />

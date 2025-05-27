@@ -93,5 +93,41 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Buscar productos
+  const searchProductForm = document.getElementById('searchProductForm');
+  const searchProductInput = document.getElementById('searchProductInput');
+  const productsList = document.getElementById('productsList');
+
+  if (searchProductForm) {
+    searchProductForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const query = searchProductInput.value.trim();
+      if (!query) return;
+      fetch(`http://localhost:3000/products/${query}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      })
+      .then(res => res.json())
+      .then(data => {
+        productsList.innerHTML = '';
+        if (!Array.isArray(data) || data.length === 0) {
+          productsList.textContent = 'No se encontraron productos.';
+          return;
+        }
+        data.forEach(prod => {
+          const div = document.createElement('div');
+          div.textContent = `ID: ${prod.id} | ${prod.name} | $${prod.price} | Stock: ${prod.stock}`;
+          productsList.appendChild(div);
+        });
+      })
+      .catch(() => {
+        productsList.textContent = 'Error al buscar productos.'
+      });
+    });
+  }
+
   renderCart();
 });
