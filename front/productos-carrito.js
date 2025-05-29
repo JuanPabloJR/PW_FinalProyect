@@ -129,5 +129,42 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Ver pedidos
+  const ordersBtn = document.createElement('button');
+  ordersBtn.textContent = 'Ver mis pedidos';
+  ordersBtn.style.margin = '1rem 0';
+  document.querySelector('.container').insertBefore(ordersBtn, document.getElementById('logoutBtn'));
+
+  const ordersList = document.createElement('ul');
+  ordersList.id = 'ordersList';
+  document.querySelector('.container').insertBefore(ordersList, document.getElementById('logoutBtn'));
+
+  ordersBtn.addEventListener('click', function() {
+    ordersList.innerHTML = 'Cargando...';
+    fetch('http://localhost:3000/orders/getter', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+    .then(res => res.json())
+    .then(data => {
+      ordersList.innerHTML = '';
+      if (!Array.isArray(data) || data.length === 0) {
+        ordersList.textContent = 'No tienes pedidos.';
+        return;
+      }
+      data.forEach(order => {
+        const li = document.createElement('li');
+        li.textContent = `Pedido #${order.id} | Total: $${order.total} | Fecha: ${order.created_time}`;
+        ordersList.appendChild(li);
+      });
+    })
+    .catch(() => {
+      ordersList.textContent = 'Error al cargar pedidos.';
+    });
+  });
+
   renderCart();
 });
